@@ -77,9 +77,13 @@ namespace Glitch_Bot
 
             //Slash Commands
             slashCommandsConfig.RegisterCommands<MessageCommandsSL>(890627352206381117);
+            slashCommandsConfig.RegisterCommands<MessageCommandsSL>(1098718313057628312);
             slashCommandsConfig.RegisterCommands<FunCommandsSL>(890627352206381117);
+            slashCommandsConfig.RegisterCommands<FunCommandsSL>(1098718313057628312);
             slashCommandsConfig.RegisterCommands<ModerationCommandsSL>(890627352206381117);
+            slashCommandsConfig.RegisterCommands<ModerationCommandsSL>(1098718313057628312);
             slashCommandsConfig.RegisterCommands<UserSubmissionCommandsSL>(890627352206381117);
+            slashCommandsConfig.RegisterCommands<UserSubmissionCommandsSL>(1098718313057628312);
 
 
             Commands.CommandErrored += OnCommandError;
@@ -104,7 +108,7 @@ namespace Glitch_Bot
                 {
                     var levelledUp = new DiscordEmbedBuilder()
                     {
-                        Title = e.Author.Username + "has levelled up!!!",
+                        Title = e.Author.Username + " has leveled up!!!",
                         Description = "Level: " + (levelEngine.GetUser(e.Author.Username, e.Guild.Id).Level - 1).ToString() + " --> " + levelEngine.GetUser(e.Author.Username, e.Guild.Id).Level.ToString(),
                         Color = DiscordColor.Green
                     };

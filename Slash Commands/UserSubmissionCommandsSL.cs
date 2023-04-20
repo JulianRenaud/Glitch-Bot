@@ -15,7 +15,7 @@ namespace Glitch_Bot.Slash_Commands
         //{
         //    await ctx.DeferAsync();
         //    var hidden = new hiddenAPIs();
-        //    string apiKey = hidden.YTAPIKey2();
+        //    string apiKey = hidden.SearchAPIKey();
         //    string cseId = hidden.CseID();
 
         //    var customSearchService = new CustomsearchService(new BaseClientService.Initializer()

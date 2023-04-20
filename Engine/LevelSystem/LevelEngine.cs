@@ -95,14 +95,14 @@ namespace Glitch_Bot.Engine.LevelSystem
                     {
                         var countXP = new Random().Next(45, 75);
                         user.XP = user.XP + countXP;
-                        var finalXP = (user.Level * 30 + 195);
+                        var finalXP = (3 * (user.Level * 10 + 195));
                         if (user.XP >= finalXP)
                         {
                             levelledUp = true;
                             user.Level++;
                             user.XP = user.XP - finalXP;
                         }
-                        user.MaxXP = (user.Level * 30 + 195);
+                        user.MaxXP = (3 * (user.Level * 10 + 195));
                     }
                     
                 }
@@ -152,7 +152,7 @@ namespace Glitch_Bot.Engine.LevelSystem
                         }
                     }
                 }
-                return false;
+                return false; 
             }
             catch (Exception ex)
             {

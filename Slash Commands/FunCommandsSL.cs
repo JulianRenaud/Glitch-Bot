@@ -14,7 +14,7 @@ namespace Glitch_Bot.Slash_Commands
         public async Task CaptionCommand(InteractionContext ctx, [Option("Caption", "The caption you want the image to have")] string caption,
                                                                  [Option("Image", "The image you want to upload")] DiscordAttachment picture)
         {
-            await ctx.CreateResponseAsync(InteractionResponseType.ChannelMessageWithSource, new DiscordInteractionResponseBuilder().WithContent("Caption"));
+            await ctx.DeferAsync();
 
             var captionMessage = new DiscordEmbedBuilder()
             {
@@ -22,12 +22,12 @@ namespace Glitch_Bot.Slash_Commands
                 ImageUrl = picture.Url,
                 Color = DiscordColor.Azure,
             };
-            await ctx.Channel.SendMessageAsync(embed: captionMessage);
+            await ctx.EditResponseAsync(new DiscordWebhookBuilder().AddEmbed(captionMessage));
         }
         [SlashCommand("cardgame", "Plays a card game against the bot")]
         public async Task SimpleCardCame(InteractionContext ctx)
         {
-            await ctx.CreateResponseAsync(InteractionResponseType.ChannelMessageWithSource, new DiscordInteractionResponseBuilder().WithContent("Cardgame"));
+            await ctx.DeferAsync();
 
             var Card = new CardBuilder();
 
@@ -40,10 +40,6 @@ namespace Glitch_Bot.Slash_Commands
                 );
 
 
-            await ctx.Channel.SendMessageAsync(userCardMessage);
-
-
-
             var botCardMessage = new DiscordMessageBuilder()
                 .AddEmbed(new DiscordEmbedBuilder()
 
@@ -53,8 +49,7 @@ namespace Glitch_Bot.Slash_Commands
                 );
 
 
-            await ctx.Channel.SendMessageAsync(botCardMessage);
-
+ 
             if (Card.UserNumber > Card.BotNumber)
             {
                 var winningMessage = new DiscordEmbedBuilder()
@@ -62,7 +57,7 @@ namespace Glitch_Bot.Slash_Commands
                     Title = "**You Won The Game!**",
                     Color = DiscordColor.Green
                 };
-                await ctx.Channel.SendMessageAsync(embed: winningMessage);
+                await ctx.EditResponseAsync(new DiscordWebhookBuilder().AddEmbed(userCardMessage.Embed).AddEmbed(botCardMessage.Embed).AddEmbed(winningMessage));
                 return;
 
             }
@@ -74,7 +69,7 @@ namespace Glitch_Bot.Slash_Commands
                     Color = DiscordColor.Red
 
                 };
-                await ctx.Channel.SendMessageAsync(embed: losingMessage);
+                await ctx.EditResponseAsync(new DiscordWebhookBuilder().AddEmbed(userCardMessage.Embed).AddEmbed(botCardMessage.Embed).AddEmbed(losingMessage));
                 return;
 
             }
@@ -86,10 +81,12 @@ namespace Glitch_Bot.Slash_Commands
                     Color = DiscordColor.White
 
                 };
-                await ctx.Channel.SendMessageAsync(embed: tieMessage);
+                await ctx.EditResponseAsync(new DiscordWebhookBuilder().AddEmbed(userCardMessage.Embed).AddEmbed(botCardMessage.Embed).AddEmbed(tieMessage));
                 return;
 
             }
+
+            
         }
     }
 }

@@ -132,6 +132,7 @@ namespace Glitch_Bot.Commands
             var funButton = new DiscordButtonComponent(ButtonStyle.Success, "funButton", "Fun");
             var messageButton = new DiscordButtonComponent(ButtonStyle.Success, "messageButton", "Messages");
             var modButton = new DiscordButtonComponent(ButtonStyle.Success, "modButton", "Moderation(ADMIN ONLY)");
+            var userButton = new DiscordButtonComponent(ButtonStyle.Success, "userButton", "User");
             var helpMessage = new DiscordMessageBuilder()
                 .AddEmbed(new DiscordEmbedBuilder()
 
@@ -139,7 +140,7 @@ namespace Glitch_Bot.Commands
                 .WithTitle("Help Menu")
                 .WithDescription("Please pick a button for more information on the commands")
                 )
-                .AddComponents(funButton, messageButton, modButton);
+                .AddComponents(funButton, messageButton, modButton, userButton);
 
             await ctx.Channel.SendMessageAsync(helpMessage);
         }
